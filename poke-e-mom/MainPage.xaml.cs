@@ -15,8 +15,8 @@ using Windows.UI.Xaml.Navigation;
 using Microsoft.Maker.Serial;
 using Microsoft.Maker.RemoteWiring;
 using io.virtualbreadboard.api;
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 using Windows.UI.ViewManagement;
+
 namespace PokeEmomApp
 {
     /// <summary>
@@ -28,7 +28,7 @@ namespace PokeEmomApp
         RemoteDevice arduino;
 
         /// <summary>
-        /// Register a device in virtualbreadboard.io portal to automatically create these connection keys for your device
+        /// Register a device in virtualbreadboard.io portal to automatically create these connection keys for your device.
         /// </summary>
         const string VBB_IO_APPEUI = "f8dc017950d84896";
         const string VBB_IO_DEVEUI = "a73590bdf4fcd407";
@@ -69,18 +69,17 @@ namespace PokeEmomApp
         }
  
         /// <summary>
-        /// POKE! There is a buzzer attached to pin 13. All we have to do is turn it on
+        /// POKE! There is a buzzer ( or other notification hardware ) attached to pin 13. All we have to do is turn it on
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnButton_Click(object sender, RoutedEventArgs e)
         {
+            //Send a edge pulse to the notification hardware
             arduino.pinMode(13, PinMode.OUTPUT);
             arduino.digitalWrite(13, PinState.LOW);
             arduino.digitalWrite(13, PinState.HIGH);
-            
-            //Poke for a period of time.. then stop the poke.. 
-            //Make the rotating sender while waiting.. 
+ 
         }
 
         private void OffButton_Click(object sender, RoutedEventArgs e)
